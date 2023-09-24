@@ -82,13 +82,12 @@
   text-align: right;
 }
 
-.chatbotResponse {
+/* .chatbotResponse {
   background-color: #f0f0f0;
   padding: 10px;
   border-radius: 5px;
   margin: 5px 0;
-}
-
+} */
 .clearButton {
   margin-top: 16px;
   padding: 12px 16px;

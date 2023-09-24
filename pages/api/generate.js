@@ -37,6 +37,8 @@ export default async function (req, res) {
       prompt: query,
       temperature: 0.6,
     });
+
+    console.log("API response:", completion.data.choices[0].text);
     res.status(200).json({ result: completion.data.choices[0].text });
   } catch (error) {
     if (error.response) {

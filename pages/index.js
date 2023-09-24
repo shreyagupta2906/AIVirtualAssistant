@@ -29,6 +29,7 @@ export default function Home() {
       console.log("Received response:", data.result);
       setQueries((prevQueries) => [...prevQueries, query]);
       setResponses((prevResponses) => [...prevResponses, data.result]);
+      console.log("Updated responses:", responses);
       setQuery("");
     } catch (error) {
       console.error(error);
