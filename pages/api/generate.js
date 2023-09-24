@@ -36,6 +36,7 @@ export default async function (req, res) {
       model: "text-davinci-003",
       prompt: query,
       temperature: 0.6,
+      max_tokens: 150,
     });
 
     console.log("API response:", completion.data.choices[0].text);
