@@ -65,30 +65,43 @@
   font-weight: bold;
   margin-top: 40px;
 }
-
-.calendarTable {
-  width: 100%;
-  border-collapse: collapse;
-}
-
-.calendarTable th,
-.calendarTable td {
-  border: 1px solid #;
-  padding: 8px;
-}
-
-.calendarTable th {
-  background-color: #c4dbfa;
-  text-align: center;
-  border-radius: 50px;
-  padding: 10px 10px; /* Adjust padding as needed */
-}
-
-.calendarTable th span {
+.chatBox {
+  max-height: 400px; /* Adjust as needed */
+  width: 320px;
+  overflow-y: scroll;
+  border: 1px solid #c4dbfa;
   padding: 10px;
-  margin-right: 100px;
+  margin-top: 20px;
 }
 
-.calendarTable tr:hover {
+.userQuery {
   background-color: #c4dbfa;
+  padding: 10px;
+  border-radius: 5px;
+  margin: 5px 0;
+  text-align: right;
+}
+
+.chatbotResponse {
+  background-color: #f0f0f0;
+  padding: 10px;
+  border-radius: 5px;
+  margin: 5px 0;
+}
+
+.clearButton {
+  margin-top: 16px;
+  padding: 12px 16px;
+  color: #fff;
+  background-color: #e04a4a; /* This gives a red color, symbolizing 'clear' or 'delete' */
+  border: none;
+  border-radius: 4px;
+  cursor: pointer;
+  transition: background-color 0.2s ease;
+  line-height: 24px;
+  width: 320px;
+}
+
+.clearButton:hover {
+  background-color: #d03131; /* A slightly darker red for hover */
 }

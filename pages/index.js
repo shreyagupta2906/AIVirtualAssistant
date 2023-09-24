@@ -1,16 +1,11 @@
 import Head from "next/head";
-import { useState, useEffect } from "react";
+import { useState } from "react";
 import styles from "./index.module.css";
-import calendarData from "../calendar.json"; // Assuming your calendar.json is in the root directory
 
 export default function Home() {
   const [query, setQuery] = useState("");
-  const [response, setResponse] = useState("");
-  const [calendarEntries, setCalendarEntries] = useState([]);
-
-  useEffect(() => {
-    setCalendarEntries(calendarData);
-  }, []);
+  const [queries, setQueries] = useState([]);
+  const [responses, setResponses] = useState([]);
 
   async function onSubmit(event) {
     event.preventDefault();
@@ -30,8 +25,10 @@ export default function Home() {
           new Error(`Request failed with status ${apiResponse.status}`)
         );
       }
+
       console.log("Received response:", data.result);
-      setResponse(data.result);
+      setQueries((prevQueries) => [...prevQueries, query]);
+      setResponses((prevResponses) => [...prevResponses, data.result]);
       setQuery("");
     } catch (error) {
       console.error(error);
@@ -39,15 +36,20 @@ export default function Home() {
     }
   }
 
+  function clearChat() {
+    setQueries([]);
+    setResponses([]);
+  }
+
   return (
     <div>
       <Head>
-        <title>Calendar Virtual Assistant</title>
+        <title>Simple Chatbot</title>
         <link rel="icon" href="/dog.png" />
       </Head>
 
       <main className={styles.main}>
-        <img src="/dog.png" alt="Dog" className={`${styles.icon}`} />
+        <img src="/dog.png" className={styles.icon} />
         <h3>Ask the Virtual Assistant</h3>
         <form onSubmit={onSubmit}>
           <input
@@ -59,38 +61,23 @@ export default function Home() {
           />
           <input type="submit" value="Ask" />
         </form>
-        <div className={styles.result}>{response}</div>
 
-        <h3>Your Calendar</h3>
-        <table className={styles.calendarTable}>
-          <thead>
-            <tr>
-              <th>Date</th>
-              <th>Event</th>
-              <th>Time</th>
-            </tr>
-          </thead>
-          <tbody>
-            {calendarEntries.map((entry) =>
-              entry.events.map((event, index) => {
-                const [eventName, eventTime] = event.split(" at ");
-                return (
-                  <tr key={index}>
-                    <td>
-                      <span>{entry.date}</span>
-                    </td>
-                    <td>
-                      <span>{eventName}</span>
-                    </td>
-                    <td>
-                      <span>{eventTime}</span>
-                    </td>
-                  </tr>
-                );
-              })
-            )}
-          </tbody>
-        </table>
+        <button
+          className={styles.clearButton}
+          type="button"
+          onClick={clearChat}
+        >
+          Clear Chat
+        </button>
+
+        <div className={styles.chatBox}>
+          {queries.map((q, idx) => (
+            <div key={idx}>
+              <div className={styles.userQuery}>{q}</div>
+              <div className={styles.chatbotResponse}>{responses[idx]}</div>
+            </div>
+          ))}
+        </div>
       </main>
     </div>
   );
