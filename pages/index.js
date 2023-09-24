@@ -30,7 +30,7 @@ export default function Home() {
           new Error(`Request failed with status ${apiResponse.status}`)
         );
       }
-
+      console.log("Received response:", data.result);
       setResponse(data.result);
       setQuery("");
     } catch (error) {
@@ -42,11 +42,12 @@ export default function Home() {
   return (
     <div>
       <Head>
-        <title>Virtual Assistant with Calendar</title>
+        <title>Calendar Virtual Assistant</title>
         <link rel="icon" href="/dog.png" />
       </Head>
 
       <main className={styles.main}>
+        <img src="/dog.png" alt="Dog" className={`${styles.icon}`} />
         <h3>Ask the Virtual Assistant</h3>
         <form onSubmit={onSubmit}>
           <input
@@ -75,9 +76,15 @@ export default function Home() {
                 const [eventName, eventTime] = event.split(" at ");
                 return (
                   <tr key={index}>
-                    <td>{entry.date}</td>
-                    <td>{eventName}</td>
-                    <td>{eventTime}</td>
+                    <td>
+                      <span>{entry.date}</span>
+                    </td>
+                    <td>
+                      <span>{eventName}</span>
+                    </td>
+                    <td>
+                      <span>{eventTime}</span>
+                    </td>
                   </tr>
                 );
               })
