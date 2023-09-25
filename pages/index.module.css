@@ -99,6 +99,8 @@
   transition: background-color 0.2s ease;
   line-height: 24px;
   width: 320px;
+  font-size: 16px;
+  font-family: "ColfaxAI", Helvetica, sans-serif;
 }
 
 .clearButton:hover {
